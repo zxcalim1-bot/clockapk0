@@ -1,0 +1,16 @@
+name: Сборка APK
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Собрать APK (это займёт 15-30 минут)
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir: .
+      - name: Отдать APK файл
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClockAssistant-APK
+          path: bin/*.apk
